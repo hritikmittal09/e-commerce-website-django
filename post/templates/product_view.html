@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block product_view %}
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            <div class="text-center p-4"> <img id="main-image" src="{{product_details.img.url}}" width="250" /> </div>
+                            <div class="thumbnail text-center"> <img onclick="change_image(this)" src="{{product_veiw.img.url}}" width="70"> <img onclick="change_image(this)" src="{{product.img.url}}" width="70"> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1"></span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                            </div>
+                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"></span>
+                                <h5 class="text-uppercase">{{product_details.product_name}} </h5>
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price"> Rs {{product_details.prize}}</span>
+                                    <div class="ml-2"> <small class="dis-price"></small> <span>40% OFF</span> </div>
+                                </div>
+                            </div>
+                            <p class="about">{{product_details.text}}</p> 
+                            <form  action="/cart/{{product_details.product_name}}/{{product_details.prize}}" method="post">
+                                {% csrf_token %} 
+
+                            <div class="cart mt-4 align-items-center"> <button type="submit" class="btn btn-primary text-uppercase mr-2 px-4" >ADD TO CART</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+                            </form>
+                            
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
